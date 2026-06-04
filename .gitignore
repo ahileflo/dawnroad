@@ -1,0 +1,11 @@
+# Keep private — do NOT publish to the live site
+*.md
+*.pdf
+*.docx
+*.exe
+*.winmd
+*.dll
+*.msi
+.~lock*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dawnroad — Tap-and-Go Campervan Guides for Europe</title>
+<meta name="description" content="Researched route guides where every stop is one tap from Google Maps navigation. Stop drowning in 100 browser tabs. Start driving.">
+<meta property="og:title" content="Dawnroad — The whole Mediterranean, by van, in your pocket">
+<meta property="og:description" content="Tap-and-go campervan route guides for Europe. Researched, honest, offline-ready.">
+<meta property="og:image" content="photos/hero-canyon-van.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b1814;--soft:#5d5347;--sun:#f4a259;--sun2:#e76f51;--sea:#2a9d8f;--sea2:#1d7f73;
+    --cream:#fbf6ee;--card:#fff;--line:#ece2d3;--gold:#bd8230;--dark:#15110d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{text-decoration:none;color:inherit}
+  .btn{display:inline-block;font-weight:600;padding:14px 26px;border-radius:999px;font-size:1rem;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-sun{background:linear-gradient(120deg,var(--sun),var(--sun2));color:#fff;box-shadow:0 8px 24px rgba(231,111,81,.35)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.6);color:#fff}
+  .btn-sea{background:var(--sea);color:#fff;box-shadow:0 8px 24px rgba(42,157,143,.3)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(251,246,238,.8);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1080px;margin:0 auto}
+  .logo{font-family:'Fraunces';font-weight:700;font-size:1.35rem;letter-spacing:-.02em}
+  .logo b{color:var(--sun2)}
+  nav .links a{margin-left:26px;font-size:.92rem;color:var(--soft);font-weight:500}
+  nav .links a:hover{color:var(--ink)}
+
+  /* HERO */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;color:#fff;overflow:hidden;
+    background:linear-gradient(160deg,#ffcaa0 0%,#f4a259 38%,#e76f51 78%,#c64a39 100%)}
+  /* PHOTO SLOT: replace this gradient with a real hero image.
+     Suggested: unsplash.com search "campervan sunrise sea door open" → download free → set as background-image below */
+  .hero .photo{position:absolute;inset:0;background:#e76f51 url('photos/hero-canyon-van.jpg') center/cover no-repeat}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,12,8,.45),transparent 60%)}
+  .hero .inner{position:relative;z-index:2;max-width:640px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.78rem;font-weight:600;opacity:.9}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);margin:14px 0 18px;font-weight:600}
+  .hero p{font-size:1.2rem;max-width:520px;opacity:.95;margin-bottom:30px}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .hero .trust{margin-top:26px;font-size:.85rem;opacity:.85;display:flex;gap:18px;flex-wrap:wrap}
+  .scrolldot{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;font-size:.75rem;letter-spacing:.2em;opacity:.8;text-transform:uppercase}
+
+  /* SECTIONS */
+  section{padding:90px 0}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;color:var(--gold)}
+  .h2{font-size:clamp(2rem,4vw,2.9rem);margin:10px 0 16px}
+  .lead{font-size:1.15rem;color:var(--soft);max-width:620px}
+  .center{text-align:center}.center .lead{margin:0 auto}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  .grid{display:grid;gap:22px;margin-top:44px}
+  .g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:transform .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(120,80,30,.12)}
+  .card .ic{font-size:1.8rem}
+  .card h3{font-size:1.3rem;margin:12px 0 6px}
+  .card p{color:var(--soft);font-size:.98rem}
+
+  /* feature split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .phone{background:var(--dark);border-radius:32px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.25);max-width:300px;margin:0 auto}
+  .phone .screen{background:linear-gradient(160deg,#ffd9a0,#f4a259 60%,#e76f51);border-radius:22px;height:520px;padding:20px;color:#3a2410;position:relative;overflow:hidden}
+  .phone .pin{background:#fff;border-radius:12px;padding:10px 12px;margin:10px 0;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;color:#1b1814}
+  .phone .go{background:var(--sea);color:#fff;font-weight:700;font-size:.7rem;padding:5px 10px;border-radius:8px}
+  .phone .go.sleep{background:var(--sun2)}
+
+  .steps{counter-reset:s;margin-top:30px}
+  .steps li{list-style:none;position:relative;padding:14px 0 14px 56px;border-top:1px solid var(--line)}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:36px;height:36px;border-radius:50%;
+    background:var(--sea);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Fraunces'}
+
+  /* PHOTO STRIP */
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+  .ph{height:220px;border-radius:14px;overflow:hidden;background:#eadfce}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .ph:hover img{transform:scale(1.06)}
+
+  /* PRICING */
+  .price-wrap{background:var(--dark);color:#fff}
+  .price-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:24px;margin-top:44px}
+  .plan{background:#211a13;border:1px solid #3a2e22;border-radius:20px;padding:32px}
+  .plan.feat{background:linear-gradient(160deg,#2a9d8f,#1d7f73);border:none;position:relative}
+  .plan .tag{position:absolute;top:18px;right:18px;background:#fff;color:var(--sea2);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:999px}
+  .plan h3{font-size:1.4rem;color:#fff}
+  .plan .num{font-family:'Fraunces';font-size:2.8rem;font-weight:700;margin:6px 0}
+  .plan .was{opacity:.6;text-decoration:line-through;font-size:1.1rem;font-weight:400;margin-left:8px}
+  .plan ul{list-style:none;margin:16px 0;font-size:.95rem;opacity:.92}
+  .plan li{padding:6px 0 6px 24px;position:relative}
+  .plan li:before{content:'✓';position:absolute;left:0;color:#fff}
+
+  /* FAQ */
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:12px 0}
+  summary{font-weight:600;cursor:pointer;font-size:1.05rem;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  details p{color:var(--soft);margin-top:10px}
+
+  .honest{background:#f3efe8;border:1px dashed #cdbfa6;border-radius:14px;padding:18px 22px;color:var(--soft);font-size:.92rem;margin-top:30px}
+  footer{background:var(--dark);color:#c9bda d;color:#c9bdac;padding:50px 0 30px}
+  footer .logo{color:#fff}footer a{color:var(--sun)}
+  footer .small{opacity:.5;font-size:.8rem;margin-top:14px;max-width:680px}
+
+  @media(max-width:820px){.g3,.g2,.split,.price-grid{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,1fr)}nav .links{display:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="row">
+  <div class="logo">Dawn<b>road</b></div>
+  <div class="links"><a href="#how">How it works</a><a href="#inside">What's inside</a><a href="#pricing">Guides</a><a href="#faq">FAQ</a><a href="#pricing" class="btn btn-sun" style="padding:9px 18px;color:#fff">Get the guide</a></div>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="photo"></div>
+  <div class="scrim"></div>
+  <div class="wrap inner">
+    <div class="eyebrow">Tap · Navigate · Go</div>
+    <h1>The whole Mediterranean, by van — in your pocket.</h1>
+    <p>Researched route guides where every beach, castle and free-camp spot is one tap from Google Maps navigation. Stop drowning in 100 browser tabs. Start driving.</p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn btn-sun">Get the guide — €19</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+    <div class="trust"><span>📍 Tap-to-navigate</span><span>📴 Works on your phone</span><span>🔄 Free 2026 updates</span><span>↩️ 30-day guarantee</span></div>
+  </div>
+  <div class="scrolldot">scroll ↓</div>
+</header>
+
+<!-- PROMISE -->
+<section class="center"><div class="wrap reveal">
+  <div class="kicker">Why Dawnroad</div>
+  <h2 class="h2">You're not buying information. You're buying the shortcut.</h2>
+  <p class="lead">Anyone can Google "Albania van trip." What they can't do is skip the 200 hours of research, the fine-dodging, and the "where do I sleep tonight" stress. That's what you're paying for — clarity, time saved, and a tap that opens the road.</p>
+  <div class="grid g3">
+    <div class="card reveal"><div class="ic">⏱️</div><h3>Time saved</h3><p>200+ hours of routes, prices and rules distilled into one offline download.</p></div>
+    <div class="card reveal"><div class="ic">🧭</div><h3>Tap &amp; go</h3><p>Every stop opens directly in Google Maps. No coordinates, no figuring it out on the road.</p></div>
+    <div class="card reveal"><div class="ic">🛡️</div><h3>No nasty surprises</h3><p>Per-country toll, vignette and camping rules — so you dodge the fines that catch others.</p></div>
+  </div>
+</div></section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background:#fff"><div class="wrap split">
+  <div class="reveal">
+    <div class="kicker">How it works</div>
+    <h2 class="h2">Open it. Tap a place. Drive.</h2>
+    <ol class="steps">
+      <li><b>Open the guide on your phone</b> — it's a fast, beautiful page that works like an app.</li>
+      <li><b>Tap any destination</b> — Google Maps opens to that exact spot, turn-by-turn.</li>
+      <li><b>Tap "Sleep nearby"</b> — see live, reviewed van spots for tonight, always current.</li>
+      <li><b>Enjoy</b> — stress-free, the route you trusted brought you there.</li>
+    </ol>
+  </div>
+  <div class="reveal">
+    <div class="phone"><div class="screen">
+      <div style="font-family:'Fraunces';font-weight:700;font-size:1.1rem">🇦🇱 Albanian Riviera</div>
+      <div class="pin">Ksamil Islands <span class="go">📍 GO</span></div>
+      <div class="pin">Blue Eye spring <span class="go">📍 GO</span></div>
+      <div class="pin">Gjipe Beach <span class="go">📍 GO</span></div>
+      <div class="pin">Tonight's free spot <span class="go sleep">🛏️</span></div>
+      <div style="font-size:.78rem;opacity:.8;margin-top:14px">Tap → navigation opens → go.</div>
+    </div></div>
+  </div>
+</div></section>
+
+<!-- WHAT'S INSIDE -->
+<section id="inside"><div class="wrap">
+  <div class="center reveal"><div class="kicker">What's inside</div><h2 class="h2">Everything for a 3–4 week loop</h2></div>
+  <div class="grid g3">
+    <div class="card reveal"><div class="ic">🗺️</div><h3>The full route</h3><p>Italy → Slovenia → Croatia → Montenegro → Albania → North Macedonia, leg by leg.</p></div>
+    <div class="card reveal"><div class="ic">📍</div><h3>Tap-to-navigate stops</h3><p>Kotor, Theth, Berat, Ksamil, the Blue Eye, Lake Ohrid — all one tap away.</p></div>
+    <div class="card reveal"><div class="ic">💶</div><h3>Real budgets</h3><p>~€30–40/day in the south-east, broken down: sleep, food, fuel, tolls.</p></div>
+    <div class="card reveal"><div class="ic">⛴️</div><h3>Ferry &amp; toll tactics</h3><p>The ferry that saves 2,000 km, and which vignette to buy before each border.</p></div>
+    <div class="card reveal"><div class="ic">🔋</div><h3>Off-grid survival kit</h3><p>Power, water, safety scenarios — how to live self-sufficient and stress-free.</p></div>
+    <div class="card reveal"><div class="ic">🛏️</div><h3>Live free-camping</h3><p>The method + live spot links so tonight's place is always current and safe.</p></div>
+  </div>
+
+  <!-- PHOTO STRIP: replace each with a free Unsplash image -->
+  <div class="strip reveal">
+    <div class="ph"><img src="photos/van-interior-lake.jpg" alt="Waking up to a lake view from the van"></div>
+    <div class="ph"><img src="photos/santorini-stairs.jpg" alt="Whitewashed steps to the Aegean, Greece"></div>
+    <div class="ph"><img src="photos/palms-pink-sky.jpg" alt="Palms against a pink sunset sky"></div>
+    <div class="ph"><img src="photos/watermelon-drink.jpg" alt="Fresh fruit drink on the road"></div>
+  </div>
+</div></section>
+
+<section class="center" style="background:#fff"><div class="wrap reveal">
+  <div class="kicker">More than a map</div>
+  <h2 class="h2">What you'll learn</h2>
+  <p class="lead">Not just <em>where</em> to go — the real skills to travel well: planning &amp; navigation, budgeting on the road, culture &amp; a little language, self-sufficiency, and staying safe. Learned by doing. Great for first-timers, families &amp; group trips.</p>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing" class="price-wrap"><div class="wrap">
+  <div class="center reveal"><div class="kicker" style="color:var(--sun)">The guides</div><h2 class="h2" style="color:#fff">Start with one. Or get the whole continent.</h2></div>
+  <div class="price-grid">
+    <div class="plan reveal">
+      <h3>The Mediterranean Escape</h3>
+      <div class="num">€19</div>
+      <p style="opacity:.8">Guide 1 — Adriatic &amp; Balkans. The full tap-and-go loop.</p>
+      <ul><li>Tap-to-navigate route</li><li>Budgets, ferries, toll rules</li><li>Off-grid survival kit</li><li>Free 2026 updates</li></ul>
+      <a href="https://payhip.com/dawnroad" class="btn btn-sun" style="color:#fff">Get it now</a>
+    </div>
+    <div class="plan feat reveal">
+      <div class="tag">BEST VALUE</div>
+      <h3>The Ultimate Bundle</h3>
+      <div class="num">€59 <span class="was">€92</span></div>
+      <p style="opacity:.92">All 5 guides — the whole of Europe by van.</p>
+      <ul><li>Mediterranean · Arctic · Atlantic · Alpine · Carpathian</li><li>Every tap-to-navigate route</li><li>Bonus: toll &amp; vignette cheat-sheet</li><li>Free updates, forever</li></ul>
+      <a href="https://payhip.com/dawnroad" class="btn" style="background:#fff;color:var(--sea2)">Get all 5 →</a>
+    </div>
+  </div>
+  <p class="center" style="opacity:.7;margin-top:24px;font-size:.9rem">Instant download · works on your phone · 30-day money-back guarantee</p>
+</div></section>
+
+<!-- FREE -->
+<section class="center" style="background:linear-gradient(120deg,#2a9d8f,#1d7f73);color:#fff">
+  <div class="wrap reveal" style="max-width:620px">
+    <div class="kicker" style="color:#cdebe4">Free taster</div>
+    <h2 class="h2" style="color:#fff">Camp the Albanian Riviera for €0</h2>
+    <p style="opacity:.92;font-size:1.1rem">7 areas + the exact method to find safe, legal free spots. Straight to your inbox.</p>
+    <div style="display:flex;gap:10px;max-width:420px;margin:22px auto 0;flex-wrap:wrap;justify-content:center">
+      <input type="email" placeholder="your@email.com" style="flex:1;min-width:200px;padding:13px 16px;border-radius:999px;border:none;font-size:1rem">
+      <a href="#" class="btn" style="background:var(--sun2);color:#fff">Send it →</a>
+    </div>
+    <p style="font-size:.78rem;opacity:.75;margin-top:10px">(Connect to your Payhip/MailerLite to capture the email.)</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq"><div class="wrap" style="max-width:760px">
+  <div class="center reveal"><div class="kicker">Good to know</div><h2 class="h2">Questions</h2></div>
+  <div class="reveal" style="margin-top:30px">
+    <details open><summary>Is this a real travel diary or research?</summary><p>It's an honestly-built <em>researched planner</em> — 200+ hours of routes, prices and rules distilled into one tap-and-go guide. The places are real, public landmarks; exact overnight spots open in live apps so they're never out of date.</p></details>
+    <details><summary>How does "tap-to-navigate" work?</summary><p>Open the guide on your phone and tap any place — Google Maps opens to it, turn-by-turn. "Sleep nearby" buttons open live, reviewed van spots for that area.</p></details>
+    <details><summary>Will prices and rules be accurate?</summary><p>Tolls, vignettes and camping laws change each season, so the guide flags everything to verify for the current year — and you get free updates.</p></details>
+    <details><summary>What if it's not useful?</summary><p>30-day, no-questions money-back guarantee.</p></details>
+  </div>
+
+  <div class="honest reveal">
+    <strong>Our promise:</strong> Dawnroad is honest by design. We don't fake "we drove every metre," we don't sell stale coordinates, and we link you to live tools so your info is always current. Real places, real budgets, kept up to date.
+    <br><br><em>(Reviews/testimonials will appear here after real customers leave them — we never invent them.)</em>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="logo">Dawn<b style="color:var(--sun)">road</b></div>
+  <p style="opacity:.7;margin-top:8px">Tap-and-go European campervan guides. Researched · honest · offline-ready.</p>
+  <p style="margin-top:14px"><a href="#pricing">Guides</a> · <a href="#faq">FAQ</a> · <a href="#">Affiliate disclosure</a> · <a href="#">Privacy</a></p>
+  <p class="small">Some outbound gear links may be affiliate links (we may earn a small commission at no cost to you). Verify all prices, tolls and local laws for the current season before travelling. Travel responsibly — leave no trace. © 2026 Dawnroad.</p>
+</div></footer>
+
+<script>
+  // subtle reveal-on-scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

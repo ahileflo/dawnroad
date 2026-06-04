@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Easy Camp Mămăligă — Dawnroad Recipe Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Accessible-first: large text, high contrast, one step at a time, icons + few words */
+  :root{--ink:#1a1712;--sun:#f4a259;--sun2:#e76f51;--sea:#2a9d8f;--cream:#fffaf2;--card:#fff;--line:#e7dcc9}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:#efe7d8;color:var(--ink);line-height:1.5}
+  .card{max-width:640px;margin:20px auto;background:var(--card);border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+  header{background:linear-gradient(150deg,#ffd9a0,#f4a259 60%,#e76f51);color:#3a2410;padding:30px 28px;text-align:center}
+  header .tag{font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.8rem;opacity:.85}
+  header h1{font-family:'Fraunces',serif;font-size:2.2rem;margin:6px 0}
+  header .meta{font-size:1.05rem;font-weight:700}
+  .pad{padding:24px 28px}
+  .photo{height:180px;border-radius:16px;background:#eadfce url('photos/recipe-mamaliga.jpg') center/cover no-repeat;display:flex;align-items:flex-end;justify-content:center;color:#fff}
+  .photo span{background:rgba(0,0,0,.4);padding:6px 12px;border-radius:10px;font-size:.8rem;margin-bottom:10px}
+  h2{font-family:'Fraunces',serif;font-size:1.5rem;margin:22px 0 6px}
+  .need{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .need span{background:#fbf3e2;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:1.05rem}
+  .step{display:flex;gap:16px;align-items:flex-start;background:#fffdf9;border:2px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}
+  .step .n{flex:0 0 54px;height:54px;border-radius:50%;background:var(--sea);color:#fff;font-family:'Fraunces';font-weight:700;font-size:1.6rem;display:flex;align-items:center;justify-content:center}
+  .step .body{flex:1}
+  .step .ic{font-size:2rem;line-height:1}
+  .step p{font-size:1.25rem;font-weight:700;margin-top:4px}
+  .safe{background:#fdeee8;border-left:6px solid var(--sun2);border-radius:10px;padding:14px 16px;font-size:1.1rem;font-weight:700;margin:16px 0}
+  .done{background:var(--sea);color:#fff;border-radius:16px;padding:20px;text-align:center;margin-top:18px}
+  .done .ic{font-size:2.4rem}
+  .done p{font-size:1.3rem;font-weight:800;margin-top:4px}
+  footer{text-align:center;padding:18px;color:#7a6f5e;font-size:.85rem}
+  @media(max-width:520px){header h1{font-size:1.8rem}.step p{font-size:1.1rem}}
+</style>
+</head>
+<body>
+<div class="card">
+  <header>
+    <div class="tag">Dawnroad · Easy Camp Cooking</div>
+    <h1>Mămăligă</h1>
+    <div class="meta">🇷🇴 Romanian polenta · 🍽️ serves 2 · ⏱️ 15 min · ⭐ very easy</div>
+  </header>
+
+  <div class="pad">
+    <div class="photo"><span>📷 add your photo: a bowl of mămăligă</span></div>
+
+    <h2>You need</h2>
+    <div class="need">
+      <span>💧 3 cups water</span>
+      <span>🧂 1 tsp salt</span>
+      <span>🌽 1 cup cornmeal</span>
+      <span>🧀 cheese (optional)</span>
+    </div>
+
+    <h2>Do this</h2>
+
+    <div class="step">
+      <div class="n">1</div>
+      <div class="body"><div class="ic">💧🔥</div><p>Put water + salt in the pot. Heat until it bubbles.</p></div>
+    </div>
+
+    <div class="step">
+      <div class="n">2</div>
+      <div class="body"><div class="ic">🌽🥄</div><p>Slowly pour in the cornmeal. Stir, stir, stir.</p></div>
+    </div>
+
+    <div class="step">
+      <div class="n">3</div>
+      <div class="body"><div class="ic">⏳🥄</div><p>Keep stirring ~10 min until thick. Add cheese on top.</p></div>
+    </div>
+
+    <div class="safe">🧤 Hot pot! Ask a grown-up to help with the stove.</div>
+
+    <div class="done">
+      <div class="ic">🎉🍽️</div>
+      <p>Done! Enjoy your mămăligă.</p>
+    </div>
+  </div>
+
+  <footer>Dawnroad · easy, accessible camp recipes · add your own photo for each step 📷</footer>
+</div>
+</body>
+</html>
